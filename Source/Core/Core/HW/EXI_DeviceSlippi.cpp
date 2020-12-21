@@ -2292,6 +2292,39 @@ void CEXISlippi::prepareOnlineMatchState()
 		u16 *stage = (u16 *)&onlineMatchBlock[0xE];
 		*stage = Common::swap16(stageId);
 
+		// Experimental stuff (Minute to win it)
+
+		// Set team ids
+		onlineMatchBlock[0x69 + 0 * 0x24] = 0x1;
+		onlineMatchBlock[0x69 + 1 * 0x24] = 0x0;
+		onlineMatchBlock[0x69 + 2 * 0x24] = 0x0;
+		onlineMatchBlock[0x69 + 3 * 0x24] = 0x0;
+
+		// Set char colors for teams
+		onlineMatchBlock[0x63 + 0 * 0x24] = getCharColor(onlineMatchBlock[0x60 + 0 * 0x24], 1);
+		onlineMatchBlock[0x63 + 1 * 0x24] = getCharColor(onlineMatchBlock[0x60 + 1 * 0x24], 0);
+		onlineMatchBlock[0x63 + 2 * 0x24] = getCharColor(onlineMatchBlock[0x60 + 2 * 0x24], 0);
+		onlineMatchBlock[0x63 + 3 * 0x24] = getCharColor(onlineMatchBlock[0x60 + 3 * 0x24], 0);
+
+		onlineMatchBlock[0x67 + 0 * 0x24] = 0;
+		onlineMatchBlock[0x67 + 1 * 0x24] = 0;
+		onlineMatchBlock[0x67 + 2 * 0x24] = 1;
+		onlineMatchBlock[0x67 + 3 * 0x24] = 2;
+		
+		// Set Special Stage
+		u16 *stage = (u16 *)&onlineMatchBlock[0xE];
+		*stage = Common::swap16(73); //82 is race to the finish, 73 is B Route Big Blue RTTF
+
+		// Set Timer
+		u32 *timer = (u32 *)&onlineMatchBlock[0x10];
+		*timer = Common::swap32(60);
+
+		// Set Stock Count 
+		onlineMatchBlock[0x62 + 0 * 0x24] = 1;
+		onlineMatchBlock[0x62 + 1 * 0x24] = 1;
+		onlineMatchBlock[0x62 + 2 * 0x24] = 1;
+		onlineMatchBlock[0x62 + 3 * 0x24] = 1;
+
 		// Set rng offset
 		rngOffset = isDecider ? lps.rngOffset : rps[0].rngOffset;
 		WARN_LOG(SLIPPI_ONLINE, "Rng Offset: 0x%x", rngOffset);
