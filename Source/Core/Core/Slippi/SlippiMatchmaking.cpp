@@ -200,6 +200,10 @@ void SlippiMatchmaking::terminateMmConnection()
 	}
 }
 
+std::string SlippiMatchmaking::GetConnectCode() {
+	return m_searchSettings.connectCode;
+}
+
 void SlippiMatchmaking::startMatchmaking()
 {
 	// I don't understand why I have to do this... if I don't do this, rand always returns the

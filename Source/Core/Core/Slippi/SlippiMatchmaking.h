@@ -52,6 +52,7 @@ class SlippiMatchmaking
 	SlippiUser::UserInfo GetOpponent();
 	int LocalPlayerIndex();
 	std::string *PlayerNames();
+	std::string GetConnectCode();
 
   protected:
 	const std::string MM_HOST_DEV = "35.197.121.196"; // Dev host

@@ -2293,6 +2293,7 @@ void CEXISlippi::prepareOnlineMatchState()
 		*stage = Common::swap16(stageId);
 
 		// Experimental stuff (Minute to win it)
+		std::string code = matchmaking->GetConnectCode();
 
 		// Set team ids
 		onlineMatchBlock[0x69 + 0 * 0x24] = 0x1;
@@ -2312,7 +2313,7 @@ void CEXISlippi::prepareOnlineMatchState()
 		onlineMatchBlock[0x67 + 3 * 0x24] = 2;
 		
 		// Set Special Stage
-		u16 *stage = (u16 *)&onlineMatchBlock[0xE];
+		//stage = (u16 *)&onlineMatchBlock[0xE];
 		*stage = Common::swap16(73); //82 is race to the finish, 73 is B Route Big Blue RTTF
 
 		// Set Timer
