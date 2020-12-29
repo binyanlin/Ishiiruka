@@ -2298,10 +2298,19 @@ void CEXISlippi::prepareOnlineMatchState()
 		// int seconds = 0;
 		// u32 *timer = (u32 *)&onlineMatchBlock[0x10];
 		//*timer = Common::swap32(seconds * 60);
-
+		
 		u16 *stage = (u16 *)&onlineMatchBlock[0xE];
 		*stage = Common::swap16(stageId);
 
+		// Set Giant Melee
+		for (int i = 0; i < 4; i++)
+		{
+			onlineMatchBlock[0x7C + i * 0x24] = 0x3f;
+			onlineMatchBlock[0x7D + i * 0x24] = 0xe0;
+			onlineMatchBlock[0x7E + i * 0x24] = 0x0;
+			onlineMatchBlock[0x7F + i * 0x24] = 0x0;
+		}
+		
 		// Set rng offset
 		rngOffset = isDecider ? lps.rngOffset : rps[0].rngOffset;
 		WARN_LOG(SLIPPI_ONLINE, "Rng Offset: 0x%x", rngOffset);
